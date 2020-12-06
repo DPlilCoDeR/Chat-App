@@ -1,15 +1,17 @@
 const express = require('express');
 const app = express();
-const port = 3000;
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
+
+const port = 3000;
 
 app.get('/', (req, res) => {
     console.log(req);
     res.sendFile(__dirname + '/index.html');
 });
 
-app.use(express.static(__dirname + '/public'));
+//middlewares
+app.use(express.static(__dirname + '/src'));
 
 
 io.on('connection', (socket) => {
